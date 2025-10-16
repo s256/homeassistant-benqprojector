@@ -15,5 +15,5 @@
   "requirements": [
     "benqprojector @ git+https://github.com/s256/homeassistant-benqprojector.git@main"
   ],
-  "version": "0.1.4"
+  "version": "0.1.5"
 }
