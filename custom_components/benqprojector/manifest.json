@@ -13,7 +13,7 @@
   	"benqprojector"
   ],
   "requirements": [
-    "benqprojector==0.1.8"
+    "benqprojector @ git+https://github.com/s256/benqprojector.py.git@feature/stability-polling"
   ],
-  "version": "0.1.4"
+  "version": "0.2.0"
 }

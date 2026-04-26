@@ -145,6 +145,34 @@ Integrations view. If your wiring is not right you will get a *Failed to connect
 
 Some projectors need to be **on** to be able to detect the model and the integration to work.
 
+## Configuration options
+
+After adding the integration, you can configure polling behavior via **Settings → Devices &
+Services → BenQ Projector → Configure**:
+
+| Option | Default | Description |
+|--------|---------|-------------|
+| **Interval** | 5 s | How often the projector is polled for status updates. |
+| **Inter-command delay** | 0.1 s | Delay between consecutive commands sent to the projector. Increase if the projector drops commands, especially when using serial-to-network bridges. |
+
+### Polling tiers
+
+Not all projector settings are polled at the same rate. To avoid saturating the serial link, the
+integration organizes commands into tiers:
+
+| Tier | Frequency | What's polled |
+|------|-----------|---------------|
+| **Hot/Active** | Every cycle | Power, volume, mute, source |
+| **Warm** | Every 3rd cycle (~15 s) | Picture mode, aspect ratio, lamp mode, color temp, blank, freeze, audio source, 3D sync |
+| **Cold** | Every 6th cycle (~30 s) | Projector position, menu position, keystone, brightness, contrast, color, sharpness, direct power, high altitude, and other config settings |
+| **Once** | Every 60th cycle (~5 min) | Lamp time |
+
+This means user-facing state like volume and source updates quickly, while rarely-changing settings
+like keystone and projector position refresh less frequently, reducing serial traffic significantly.
+
+User-initiated commands (power on/off, source changes, etc.) always take priority over background
+polling.
+
 ## Actions
 
 The integration supports actions so commands can be send which are (not yet) implemented.

@@ -32,7 +32,9 @@ from homeassistant.helpers.update_coordinator import DataUpdateCoordinator, Upda
 
 from .const import (
     CONF_BAUD_RATE,
+    CONF_DEFAULT_INTER_COMMAND_DELAY,
     CONF_DEFAULT_INTERVAL,
+    CONF_INTER_COMMAND_DELAY,
     CONF_INTERVAL,
     CONF_MODEL,
     CONF_SERIAL_PORT,
@@ -166,8 +168,8 @@ class BenQProjectorCoordinator(DataUpdateCoordinator):
 
     async def async_send_command(self, command: str, action: str | None = None):
         if action:
-            return await self.projector.send_command(command, action)
-        return await self.projector.send_command(command)
+            return await self.projector.send_command(command, action, priority=True)
+        return await self.projector.send_command(command, priority=True)
 
     async def async_send_raw_command(self, command: str):
         return await self.projector.send_raw_command(command)
@@ -247,6 +249,11 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
     if not await projector.connect(interval=interval):
         raise ConfigEntryNotReady(f"Unable to connect to device {projector.unique_id}")
 
+    inter_command_delay = entry.options.get(
+        CONF_INTER_COMMAND_DELAY, CONF_DEFAULT_INTER_COMMAND_DELAY
+    )
+    projector._inter_command_delay = inter_command_delay
+
     _LOGGER.info("Device %s is available", projector.unique_id)
 
     coordinator = BenQProjectorCoordinator(hass, projector)
@@ -262,7 +269,9 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
         command: str = call.data.get(CONF_SERVICE_COMMAND)
         action: str = call.data.get(CONF_SERVICE_ACTION)
 
-        response = await coordinator.projector.send_command(command, action, False)
+        response = await coordinator.projector.send_command(
+            command, action, False, priority=True
+        )
 
         return {"response": response}
 

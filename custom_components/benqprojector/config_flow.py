@@ -33,7 +33,9 @@ from homeassistant.helpers.selector import (
 
 from .const import (
     CONF_BAUD_RATE,
+    CONF_DEFAULT_INTER_COMMAND_DELAY,
     CONF_DEFAULT_INTERVAL,
+    CONF_INTER_COMMAND_DELAY,
     CONF_INTERVAL,
     CONF_MODEL,
     CONF_SERIAL_PORT,
@@ -272,6 +274,18 @@ class BenQProjectorOptionsFlowHandler(OptionsFlow):
             vol.Optional(CONF_INTERVAL, default=CONF_DEFAULT_INTERVAL): NumberSelector(
                 NumberSelectorConfig(
                     min=0,
+                    mode=NumberSelectorMode.BOX,
+                    unit_of_measurement=UnitOfTime.SECONDS,
+                )
+            ),
+            vol.Optional(
+                CONF_INTER_COMMAND_DELAY,
+                default=CONF_DEFAULT_INTER_COMMAND_DELAY,
+            ): NumberSelector(
+                NumberSelectorConfig(
+                    min=0,
+                    max=1.0,
+                    step=0.05,
                     mode=NumberSelectorMode.BOX,
                     unit_of_measurement=UnitOfTime.SECONDS,
                 )

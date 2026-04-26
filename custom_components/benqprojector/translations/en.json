@@ -45,9 +45,11 @@
         "step": {
 	    	"init": {
                 "data": {
-                	"interval": "Interval"
+                	"interval": "Interval",
+                	"inter_command_delay": "Inter-command delay"
                 },
                 "data_description": {
+                	"inter_command_delay": "Delay in seconds between consecutive commands sent to the projector. Increase if the projector drops commands."
                 }
 	    	}
 	    }

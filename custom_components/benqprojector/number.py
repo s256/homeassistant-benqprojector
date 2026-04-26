@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import asyncio
 import logging
 
 from benqprojector import BenQProjector
@@ -14,6 +15,8 @@ from . import BenQProjectorCoordinator
 from .const import DOMAIN
 
 _LOGGER = logging.getLogger(__name__)
+
+PARALLEL_UPDATES = 1
 
 
 async def async_setup_entry(
@@ -219,6 +222,7 @@ class BenQProjectorNumber(CoordinatorEntity, NumberEntity):
                     == "+"
                 ):
                     self._attr_native_value += self._attr_native_step
+                    await asyncio.sleep(0.1)
                 else:
                     break
 
@@ -230,6 +234,7 @@ class BenQProjectorNumber(CoordinatorEntity, NumberEntity):
                     == "-"
                 ):
                     self._attr_native_value -= self._attr_native_step
+                    await asyncio.sleep(0.1)
                 else:
                     break
 
