@@ -1,4 +1,4 @@
-# Home Assistant integration for BenQ projectors
+# Home Assistant integration for BenQ projectors (W4100i + Waveshare Fork)
 
 ![Python][python-shield]
 [![GitHub Release][releases-shield]][releases]
@@ -13,8 +13,12 @@
 
 ## Introduction
 
+This is a fork from [rrooggiieerr](https://github.com/rrooggiieerr/homeassistant-benqprojector)'s repo and great work. Without their work, this would no be possible. 
+I lack the skills and time to integrate the changes upstream. I own a BenQ W4100i with a Waveshare RS232-to-Ethernet bridge and the serial-to-network connection or just the serial connection between the Projector and the Waveshare is behaving in a way, that wasn't accounted for before. 
+As my changes very very likely break a lot of other network-to-serial-bridges or even existing projector controls, I decided to have it live in this fork.
+
 Home Assistant integration to control BenQ projectors over the serial or network interface
-including serial to network bridges like [esp-link](https://github.com/jeelabs/esp-link).
+including serial to network bridges like [esp-link](https://github.com/jeelabs/esp-link) or [Waveshare](https://www.waveshare.com/rs232-485-422-to-poe-eth-b.htm).
 
 <img src="https://raw.githubusercontent.com/rrooggiieerr/homeassistant-benqprojector/main/Screenshot%201b.png" style="width: 50%;"/>
 
@@ -24,6 +28,7 @@ including serial to network bridges like [esp-link](https://github.com/jeelabs/e
 * Sending commands to projectors
 * Reading the projector status
 * Uses asynchronous IO
+* Support for W4100i with Waveshare RS232/RS-485 to Ethernet (POE) Bridge
 
 ## Protocol
 
@@ -87,6 +92,7 @@ The following projectors are known to work:
 * W1140
 * W1250
 * W4000i
+* W4100i
 * X3000i
 
 The following projectors are not tested but use the same protocol according to the documentation:
@@ -117,7 +123,7 @@ improve the overview of supported projectors.
 The recommended way to install this Home Assistant integration is by using [HACS][hacs].
 Click the following button to open the integration directly on the HACS integration page.
 
-[![Install BenQ projector from HACS.](https://my.home-assistant.io/badges/hacs_repository.svg)](https://my.home-assistant.io/redirect/hacs_repository/?owner=rrooggiieerr&repository=homeassistant-benqprojector&category=integration)
+[![Install BenQ projector from HACS.](https://my.home-assistant.io/badges/hacs_repository.svg)](https://my.home-assistant.io/redirect/hacs_repository/?owner=s256&repository=homeassistant-benqprojector&category=integration)
 
 Or follow these instructions:
 
@@ -234,19 +240,13 @@ the following platforms, your donation is greatly appreciated and keeps me motiv
 [![BuyMeCoffee][buymecoffee-shield]][buymecoffee]
 [![Patreon][patreon-shield]][patreon]
 
-### Hire me
-
-If you would like to have a Home Assistant integration developed for your product or are in need
-for a freelance Python developer for your project please contact me, you can find my email address
-on [my GitHub profile](https://github.com/rrooggiieerr).
-
 [python-shield]: https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54
-[releases]: https://github.com/rrooggiieerr/homeassistant-benqprojector/releases
-[releases-shield]: https://img.shields.io/github/v/release/rrooggiieerr/homeassistant-benqprojector?style=for-the-badge
+[releases]: https://github.com/s256/homeassistant-benqprojector/releases
+[releases-shield]: https://img.shields.io/github/v/release/s256/homeassistant-benqprojector?style=for-the-badge
 [license]: ./LICENSE
-[license-shield]: https://img.shields.io/github/license/rrooggiieerr/homeassistant-benqprojector?style=for-the-badge
-[maintainer]: https://github.com/rrooggiieerr
-[maintainer-shield]: https://img.shields.io/badge/MAINTAINER-%40rrooggiieerr-41BDF5?style=for-the-badge
+[license-shield]: https://img.shields.io/github/license/s256/homeassistant-benqprojector?style=for-the-badge
+[maintainer]: https://github.com/s256
+[maintainer-shield]: https://img.shields.io/badge/MAINTAINER-%40s256-41BDF5?style=for-the-badge
 [homeassistant]: https://www.home-assistant.io/
 [homeassistant-shield]: https://img.shields.io/badge/home%20assistant-%2341BDF5.svg?style=for-the-badge&logo=home-assistant&logoColor=white
 [hacs]: https://hacs.xyz/

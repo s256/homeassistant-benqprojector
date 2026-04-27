@@ -1,16 +1,16 @@
 {
   "domain": "benqprojector",
-  "name": "BenQ Projector",
+  "name": "BenQ Projector - W4100i + Waveshare Fork",
   "codeowners": [
-    "@rrooggiieerr"
+    "@s256"
   ],
   "config_flow": true,
-  "documentation": "https://github.com/rrooggiieerr/homeassistant-benqprojector",
+  "documentation": "https://github.com/s256/homeassistant-benqprojector",
   "integration_type": "device",
   "iot_class": "local_polling",
-  "issue_tracker": "https://github.com/rrooggiieerr/homeassistant-benqprojector/issues",
+  "issue_tracker": "https://github.com/s256/homeassistant-benqprojector/issues",
   "loggers": [
-  	"benqprojector"
+    "benqprojector"
   ],
   "requirements": [
     "benqprojector @ git+https://github.com/s256/benqprojector.py.git@v0.2.0"
