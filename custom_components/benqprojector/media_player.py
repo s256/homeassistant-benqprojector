@@ -169,7 +169,6 @@ class BenQProjectorMediaPlayer(CoordinatorEntity, MediaPlayerEntity):
         """Turn projector off."""
         if await self.coordinator.async_turn_off():
             self._attr_state = MediaPlayerState.OFF
-            self._attr_available = False
 
     async def async_mute_volume(self, mute: bool) -> None:
         """Mute (true) or unmute (false) media player."""
