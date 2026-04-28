@@ -13,7 +13,7 @@
     "benqprojector"
   ],
   "requirements": [
-    "benqprojector @ git+https://github.com/s256/benqprojector.py.git@v0.2.0"
+    "benqprojector @ git+https://github.com/s256/benqprojector.py.git@main"
   ],
-  "version": "0.2.2"
+  "version": "dev"
 }
